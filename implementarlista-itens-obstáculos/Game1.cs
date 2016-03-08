@@ -14,7 +14,7 @@ namespace implementarlista_itens_obstáculos
         SpriteBatch spriteBatch;
         List<string> listaitens;
         int numItens = 5;
-        Hains Personagem;
+        Hains Personagem = new Hains();
 
         public Game1()
         {
@@ -34,7 +34,7 @@ namespace implementarlista_itens_obstáculos
 
 
 
-           HainsR = new Rectangle(80, 80, 80, 80);
+           
            
             listaitens = new List<string>();
             for (int i = 0; i < numItens; i++) 
@@ -82,11 +82,19 @@ namespace implementarlista_itens_obstáculos
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+  ///////////////////////////////////--------------------------- Movimentação do Personagem ------------------------------------------------------------------- /////////////////////////////////
+         
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                
+                Personagem.HainsR.X = Personagem.HainsR.X - Personagem.velocidade;
             }
+            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                Personagem.HainsR.X = Personagem.HainsR.X + Personagem.velocidade;
+            }
+        
+
+            
        
             base.Update(gameTime);
         }
