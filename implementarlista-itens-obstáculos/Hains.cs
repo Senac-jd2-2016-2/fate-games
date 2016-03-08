@@ -10,7 +10,7 @@ namespace implementarlista_itens_obstáculos
 {
     class Hains
     {
-        public Rectangle HainsR = new Rectangle(80,80,190,275); 
+        public Rectangle HainsR = new Rectangle(0,80,190,275); 
         public int vida = 10, velocidade = 2;
         public Texture2D HainsTextura;
 

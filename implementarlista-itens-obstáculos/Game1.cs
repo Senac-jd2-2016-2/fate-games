@@ -35,7 +35,7 @@ namespace implementarlista_itens_obstáculos
 
             Armario = new Rectangle(200, 200, 335, 352);
             Escada = new Rectangle(200, 200, 250, 633);
-            BackGround = new Rectangle(10, 10, 3000, 3000);
+            BackGround = new Rectangle(0, -2400, 3000, 3000);
            
            
 
