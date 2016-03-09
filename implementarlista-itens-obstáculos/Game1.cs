@@ -125,7 +125,7 @@ namespace implementarlista_itens_obstáculos
                 }
 
             }
-
+             
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 Personagem.HainsR.Y = Personagem.HainsR.Y - Personagem.velocidade;
