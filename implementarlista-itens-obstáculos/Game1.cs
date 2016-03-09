@@ -11,11 +11,16 @@ namespace implementarlista_itens_obstáculos
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
+        
         SpriteBatch spriteBatch;
         Hains Personagem = new Hains();
-        Rectangle Armario, Escada,BackGround;
-        Texture2D TexturaArmario, TexturaEscada,TexturaBackground;
+        Inimigos Peixe;
+        BackGround Recepção;
+        Rectangle Armario, Escada,BackGround,Visao;
+        Texture2D TexturaArmario, TexturaEscada;
+        
 
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -33,14 +38,16 @@ namespace implementarlista_itens_obstáculos
             // TODO: Add your initialization logic here
 
 
-            Armario = new Rectangle(200, 200, 335, 352);
-            Escada = new Rectangle(200, 200, 250, 633);
-            BackGround = new Rectangle(0, -2400, 3000, 3000);
-           
-           
+            Armario = new Rectangle(200, 130, 335, 352);
+            Escada = new Rectangle(120, 200, 250, 633);
+
+            
+      
+            
 
 
 
+            
 
 
                 base.Initialize();
@@ -59,8 +66,9 @@ namespace implementarlista_itens_obstáculos
             spriteBatch = new SpriteBatch(GraphicsDevice);
             TexturaArmario = Content.Load<Texture2D>("Armario");
             TexturaEscada = Content.Load<Texture2D>("Escada");
-            TexturaBackground = Content.Load<Texture2D>("BackGround");
+            Recepção.TexturaBackGround = Content.Load<Texture2D>("BackGround");
             Personagem.HainsTextura = Content.Load<Texture2D>("Hains");
+            Peixe.TexturaInimigo = Content.Load<Texture2D>("Inimigo");
             
 
            
@@ -88,17 +96,98 @@ namespace implementarlista_itens_obstáculos
 
   ///////////////////////////////////--------------------------- Movimentação do Personagem ------------------------------------------------------------------- /////////////////////////////////
          
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+         
+            
+            
+            
+            
+                if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
+
                 Personagem.HainsR.X = Personagem.HainsR.X - Personagem.velocidade;
+
+
+                if (BackGround.X < 0 && Personagem.HainsR.X <=  Window.ClientBounds.Left + 100)
+                {
+                    Recepção.fundore.X = Recepção.fundore.X - 10;
+                }
+                
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 Personagem.HainsR.X = Personagem.HainsR.X + Personagem.velocidade;
-            }
-        
 
+                if (BackGround.X > -2200 && Personagem.HainsR.X >= Window.ClientBounds.Width - 200)
+                {
+                    Recepção.fundore.X = Recepção.fundore.X + 10;
+                }
+
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                Personagem.HainsR.Y = Personagem.HainsR.Y - Personagem.velocidade;
+
+                if (Personagem.HainsR.Y <= Window.ClientBounds.Top)
+                {
+
+                    Recepção.subir += gameTime.ElapsedGameTime.Milliseconds;
+                    
+                    if (BackGround.Y < 0)
+                    {
+                        BackGround.Y = BackGround.Y + 5;
+                        
+                        if (Recepção.subir <= 3000) 
+                        {
+                            BackGround.Y = BackGround.Y + 3000;
+                        
+                        }
+
+                    }
+                }
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+
+                if (BackGround.Y > -2400)
+                {
+                    Recepção.fundore.Y = Recepção.fundore.Y - 10;
+                }
+
+            }
+
+
+            if (Personagem.HainsR.Intersects(Visao)) 
+            {
+
+                Peixe.perseguir = true;
+
+                if (Peixe.perseguir == true)
+                {
+                    if (Personagem.HainsR.X < Peixe.InimigoRe.X)
+                    {
+                        Peixe.InimigoRe.X = Peixe.InimigoRe.X - 2;
+                        Visao.X = Peixe.InimigoRe.X;
+                    }
+                    else if (Personagem.HainsR.X > Peixe.InimigoRe.X)
+                    {
+                        Peixe.InimigoRe.X = Peixe.InimigoRe.X + 2;
+                        Visao.X = Peixe.InimigoRe.X;
+                    }
+                }
+            } 
             
+
+            /*if (Personagem.HainsR.Intersects(Armario) && Keyboard.GetState().IsKeyDown(Keys.E)) 
+            {
+
+                perseguir = false;
+
+            }*/
+            
+
+           
        
             base.Update(gameTime);
         }
@@ -111,10 +200,11 @@ namespace implementarlista_itens_obstáculos
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            spriteBatch.Draw(TexturaBackground, BackGround, Color.White);
-            spriteBatch.Draw(TexturaArmario, Armario, Color.White);
-            spriteBatch.Draw(TexturaEscada, Escada, Color.White);
+            spriteBatch.Draw(Recepção.TexturaBackGround, Receção.fundore, Color.White);
+            //spriteBatch.Draw(TexturaArmario, Armario, Color.White);
+            //spriteBatch.Draw(TexturaEscada, Escada, Color.White);
             spriteBatch.Draw(Personagem.HainsTextura, Personagem.HainsR, Color.White);
+            spriteBatch.Draw(Peixe.TexturaInimigo, Peixe.InimigoRe, Color.White);
             spriteBatch.End();
 
             // TODO: Add your drawing code here
