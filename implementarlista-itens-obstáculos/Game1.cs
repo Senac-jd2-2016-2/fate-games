@@ -135,10 +135,18 @@ namespace implementarlista_itens_obstáculos
                     Recepção.fundore.Y = Recepção.fundore.Y + Recepção.velocidade;
                 
                 }
-                if (Personagem.HainsR.Y <= -5)
+                if (Personagem.HainsR.Y <= -5 && Recepção.contador == 0)
                 {
+                    Recepção.contador = 1;
+                    Recepção.fundore.Y = -1698;
+                    Personagem.HainsR.Y = 160;
 
-                    Recepção.fundore.Y = -1700;
+
+                }
+                if (Personagem.HainsR.Y <= -5 && Recepção.contador == 1)
+                {
+                    
+                    Recepção.fundore.Y = -232;
                     Personagem.HainsR.Y = 160;
 
 
