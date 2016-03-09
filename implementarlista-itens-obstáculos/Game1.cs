@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace implementarlista_itens_obstáculos
@@ -16,7 +17,7 @@ namespace implementarlista_itens_obstáculos
         Hains Personagem = new Hains();
         Inimigos Peixe = new Inimigos();
         BackGround Recepção = new BackGround();
-        Rectangle Armario, Escada, BackGround, Visao;
+        Rectangle Armario, Escada, Visao;
         Texture2D TexturaArmario, TexturaEscada;
 
 
@@ -41,8 +42,7 @@ namespace implementarlista_itens_obstáculos
             Armario = new Rectangle(200, 130, 335, 352);
             Escada = new Rectangle(120, 200, 250, 633);
 
-
-
+           
 
 
 
@@ -98,6 +98,7 @@ namespace implementarlista_itens_obstáculos
 
 
 
+            
 
 
 
@@ -108,7 +109,7 @@ namespace implementarlista_itens_obstáculos
 
                 if (Recepção.fundore.X < 0)
                 {
-                    Recepção.fundore.X = Recepção.fundore.X + 10;
+                    Recepção.fundore.X = Recepção.fundore.X + Recepção.velocidade;
                 }
 
             }
@@ -118,7 +119,7 @@ namespace implementarlista_itens_obstáculos
 
                 if (Recepção.fundore.X > -2200)
                 {
-                    Recepção.fundore.X = Recepção.fundore.X - 10;
+                    Recepção.fundore.X = Recepção.fundore.X - Recepção.velocidade;
                 }
 
             }
@@ -126,30 +127,31 @@ namespace implementarlista_itens_obstáculos
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 Personagem.HainsR.Y = Personagem.HainsR.Y - Personagem.velocidade;
+                
 
-                if (Personagem.HainsR.Y >= Window.ClientBounds.Top)
+                if (Personagem.HainsR.Y <= Window.ClientBounds.Top + 100) 
+                {
+                    
+                    Recepção.fundore.Y = Recepção.fundore.Y + Recepção.velocidade;
+                
+                }
+                if (Personagem.HainsR.Y <= -5)
                 {
 
-                    Recepção.subir += gameTime.ElapsedGameTime.Milliseconds;
+                    Recepção.fundore.Y = -1700;
+                    Personagem.HainsR.Y = 160;
 
-                    if (BackGround.Y < 0)
-                    {
-                        BackGround.Y = BackGround.Y + 10;
 
-                        if (Recepção.subir <= 3000)
-                        {
-                            BackGround.Y = BackGround.Y + 3000;
-
-                        }
-
-                    }
                 }
+            
+
+
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
 
-                if (BackGround.Y > -2400)
+                if (Recepção.fundore.Y > -2400)
                 {
                     Recepção.fundore.Y = Recepção.fundore.Y - 10;
                 }
@@ -185,6 +187,7 @@ namespace implementarlista_itens_obstáculos
 
             }*/
 
+            Console.WriteLine(Personagem.HainsR.Y);
 
 
 
