@@ -14,6 +14,6 @@ namespace implementarlista_itens_obstáculos
         public int velocidade = 10, subir = 0;
         public Texture2D Texturafundo;
         public Rectangle fundore = new Rectangle(0, -2400, 3000, 3000);
-
+          
     }
 }
