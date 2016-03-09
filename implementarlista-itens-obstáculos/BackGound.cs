@@ -8,15 +8,12 @@ using System.Text;
 
 namespace implementarlista_itens_obstáculos
 {
-    class Hains
+    class BackGround
     {
-        public Rectangle HainsR = new Rectangle(320, 190, 190, 275);
-        public int vida = 10, velocidade = 2;
-        public Texture2D HainsTextura;
 
-
-
-
+        public int velocidade = 10, subir = 0;
+        public Texture2D Texturafundo;
+        public Rectangle fundore = new Rectangle(0, -2400, 3000, 3000);
 
     }
 }
