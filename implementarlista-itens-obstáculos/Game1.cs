@@ -104,22 +104,21 @@ namespace implementarlista_itens_obstáculos
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
 
-                Personagem.HainsR.X = Personagem.HainsR.X - Personagem.velocidade;
 
 
-                if (BackGround.X < 0 && Personagem.HainsR.X <= Window.ClientBounds.Left + 100)
+                if (Recepção.fundore.X < 0)
                 {
-                    Recepção.fundore.X = Recepção.fundore.X - 10;
+                    Recepção.fundore.X = Recepção.fundore.X + 10;
                 }
 
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                Personagem.HainsR.X = Personagem.HainsR.X + Personagem.velocidade;
 
-                if (BackGround.X > -2200 && Personagem.HainsR.X >= Window.ClientBounds.Width - 200)
+
+                if (Recepção.fundore.X > -2200)
                 {
-                    Recepção.fundore.X = Recepção.fundore.X + 10;
+                    Recepção.fundore.X = Recepção.fundore.X - 10;
                 }
 
             }
@@ -128,14 +127,14 @@ namespace implementarlista_itens_obstáculos
             {
                 Personagem.HainsR.Y = Personagem.HainsR.Y - Personagem.velocidade;
 
-                if (Personagem.HainsR.Y <= Window.ClientBounds.Top)
+                if (Personagem.HainsR.Y >= Window.ClientBounds.Top)
                 {
 
                     Recepção.subir += gameTime.ElapsedGameTime.Milliseconds;
 
                     if (BackGround.Y < 0)
                     {
-                        BackGround.Y = BackGround.Y + 5;
+                        BackGround.Y = BackGround.Y + 10;
 
                         if (Recepção.subir <= 3000)
                         {
