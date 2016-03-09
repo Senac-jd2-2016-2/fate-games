@@ -42,7 +42,6 @@ namespace implementarlista_itens_obstáculos
             Armario = new Rectangle(200, 130, 335, 352);
             Escada = new Rectangle(120, 200, 250, 633);
 
-           
 
 
 
@@ -69,6 +68,7 @@ namespace implementarlista_itens_obstáculos
             Recepção.Texturafundo = Content.Load<Texture2D>("BackGround");
             Personagem.HainsTextura = Content.Load<Texture2D>("Hains");
             Peixe.TexturaInimigo = Content.Load<Texture2D>("Inimigo");
+            
 
 
 
@@ -91,6 +91,7 @@ namespace implementarlista_itens_obstáculos
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -216,6 +217,7 @@ namespace implementarlista_itens_obstáculos
             spriteBatch.Draw(Personagem.HainsTextura, Personagem.HainsR, Color.White);
             spriteBatch.Draw(Peixe.TexturaInimigo, Peixe.InimigoRe, Color.White);
             spriteBatch.End();
+
 
             // TODO: Add your drawing code here
 
