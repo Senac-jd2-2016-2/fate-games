@@ -2,7 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-
+using Microsoft.Xna.Framework.Content;
+using System;
+using System.Linq;
+using System.Text;
 namespace implementarlista_itens_obstáculos
 {
     /// <summary>
@@ -14,8 +17,8 @@ namespace implementarlista_itens_obstáculos
         
         SpriteBatch spriteBatch;
         Hains Personagem = new Hains();
-        Inimigos Peixe;
-        BackGround Recepção;
+        Inimigos Peixe = new Inimigos();
+        BackGround Recepção = new BackGround();
         Rectangle Armario, Escada,BackGround,Visao;
         Texture2D TexturaArmario, TexturaEscada;
         
@@ -66,7 +69,7 @@ namespace implementarlista_itens_obstáculos
             spriteBatch = new SpriteBatch(GraphicsDevice);
             TexturaArmario = Content.Load<Texture2D>("Armario");
             TexturaEscada = Content.Load<Texture2D>("Escada");
-            Recepção.TexturaBackGround = Content.Load<Texture2D>("BackGround");
+            Recepção.Texturafundo = Content.Load<Texture2D>("BackGround");
             Personagem.HainsTextura = Content.Load<Texture2D>("Hains");
             Peixe.TexturaInimigo = Content.Load<Texture2D>("Inimigo");
             
@@ -104,22 +107,21 @@ namespace implementarlista_itens_obstáculos
                 if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
 
-                Personagem.HainsR.X = Personagem.HainsR.X - Personagem.velocidade;
 
 
-                if (BackGround.X < 0 && Personagem.HainsR.X <=  Window.ClientBounds.Left + 100)
+
+                if (Recepção.fundore.X < 0)
                 {
-                    Recepção.fundore.X = Recepção.fundore.X - 10;
+                    Recepção.fundore.X = Recepção.fundore.X + 10;
                 }
                 
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                Personagem.HainsR.X = Personagem.HainsR.X + Personagem.velocidade;
-
-                if (BackGround.X > -2200 && Personagem.HainsR.X >= Window.ClientBounds.Width - 200)
+                
+                if (Recepção.fundore.X > -2200 )
                 {
-                    Recepção.fundore.X = Recepção.fundore.X + 10;
+                    Recepção.fundore.X = Recepção.fundore.X - 10;
                 }
 
             }
@@ -137,7 +139,7 @@ namespace implementarlista_itens_obstáculos
                     {
                         BackGround.Y = BackGround.Y + 5;
                         
-                        if (Recepção.subir <= 3000) 
+                        if (Recepção.subir >= 3000) 
                         {
                             BackGround.Y = BackGround.Y + 3000;
                         
@@ -200,7 +202,7 @@ namespace implementarlista_itens_obstáculos
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            spriteBatch.Draw(Recepção.TexturaBackGround, Receção.fundore, Color.White);
+            spriteBatch.Draw(Recepção.Texturafundo, Recepção.fundore, Color.White);
             //spriteBatch.Draw(TexturaArmario, Armario, Color.White);
             //spriteBatch.Draw(TexturaEscada, Escada, Color.White);
             spriteBatch.Draw(Personagem.HainsTextura, Personagem.HainsR, Color.White);
