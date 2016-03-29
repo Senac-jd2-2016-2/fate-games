@@ -131,82 +131,17 @@ namespace implementarlista_itens_obstáculos
 
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                Personagem.HainsR.Y = Personagem.HainsR.Y - Personagem.velocidade;
-
-
-                if (Personagem.HainsR.Y <= Window.ClientBounds.Top + 100)
-                {
-
-                    Recepção.fundore.Y = Recepção.fundore.Y + Recepção.velocidade;
-                    Peixe.InimigoRe.Y = Peixe.InimigoRe.Y + Recepção.velocidade;
-                    Peixe.Visao.Y = Peixe.Visao.Y + Recepção.velocidade;
-
-                }
-                if (Personagem.HainsR.Y <= -5 && Recepção.contador == 0)
-                {
-                    Recepção.contador = 1;
-                    for (int contador = -2400; contador <= -1698; contador = contador + 5)
-                    {
-
-                        Recepção.fundore.Y = contador;
-                        Personagem.HainsR.Y = 160;
-
-
-
-                    }
-
-
-
-                    /*Recepção.fundore.Y = -1698;
-                    Personagem.HainsR.Y = 160;
-                    */
-
-                }
-                if (Personagem.HainsR.Y <= -5 && Recepção.contador == 1)
-                {
-
-                    Recepção.fundore.Y = -232;
-                    Personagem.HainsR.Y = 160;
-
-
-                }
-
-
-
+                Recepção.mover(10);
+                Console.WriteLine("Y=" + Recepção.fundore.Y);
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                Personagem.HainsR.Y = Personagem.HainsR.Y + Personagem.velocidade;
-
-
-                if (Personagem.HainsR.Y <= Window.ClientBounds.Bottom - 100)
-                {
-
-                    Recepção.fundore.Y = Recepção.fundore.Y - Recepção.velocidade;
-                    Peixe.InimigoRe.Y = Peixe.InimigoRe.Y - Recepção.velocidade;
-                    Peixe.Visao.Y = Peixe.Visao.Y - Recepção.velocidade;
-
-                }
-                if (Personagem.HainsR.Y >= 210 && Recepção.contador == 1)
-                {
-                    Recepção.contador = Recepção.contador - 1;
-                    Recepção.fundore.Y = -2400;
-                    Personagem.HainsR.Y = 190;
-
-
-                }
-                /*  if (Personagem.HainsR.Y >= 210 && Recepção.contador == 0)
-                  {
-
-                      Recepção.fundore.Y = -1698;
-                      Personagem.HainsR.Y = 160; ;
-
-                  }
-                  */
-
-
+                Recepção.mover(-10);
+                Console.WriteLine("Y=" + Recepção.fundore.Y);
             }
+
+            Recepção.moverAndar();
 
 
 
@@ -250,8 +185,8 @@ namespace implementarlista_itens_obstáculos
 
             }*/
 
-            Console.WriteLine(Personagem.HainsR.Y);
-            Console.WriteLine(Personagem.HainsR.X);
+            //Console.WriteLine(Personagem.HainsR.Y);
+            //Console.WriteLine(Personagem.HainsR.X);
 
 
             base.Update(gameTime);
