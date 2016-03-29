@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Windows Desktop
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "implementarlista-itens-obstáculos", "implementarlista-itens-obstáculos\implementarlista-itens-obstáculos.csproj", "{970C6E04-3472-410C-972C-09679629DDE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hains", "implementarlista-itens-obstáculos\Hains.csproj", "{970C6E04-3472-410C-972C-09679629DDE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
