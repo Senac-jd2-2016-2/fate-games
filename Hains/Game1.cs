@@ -39,8 +39,9 @@ namespace implementarlista_itens_obstáculos
             // TODO: Add your initialization logic here
 
 
-            Armario = new Rectangle(200, 130, 335, 352);
+            Armario = new Rectangle(160, 320, 335, 352);
             Escada = new Rectangle(120, 200, 250, 633);
+
 
 
 
@@ -68,7 +69,7 @@ namespace implementarlista_itens_obstáculos
             Recepção.Texturafundo = Content.Load<Texture2D>("BackGround");
             Personagem.HainsTextura = Content.Load<Texture2D>("Hains");
             Peixe.TexturaInimigo = Content.Load<Texture2D>("Inimigo");
-            
+            Peixe.TexturaVisao = Content.Load<Texture2D>("Visao");
 
 
 
@@ -91,7 +92,6 @@ namespace implementarlista_itens_obstáculos
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -99,7 +99,7 @@ namespace implementarlista_itens_obstáculos
 
 
 
-            
+
 
 
 
@@ -111,6 +111,8 @@ namespace implementarlista_itens_obstáculos
                 if (Recepção.fundore.X < 0)
                 {
                     Recepção.fundore.X = Recepção.fundore.X + Recepção.velocidade;
+                    Peixe.InimigoRe.X = Peixe.InimigoRe.X + Recepção.velocidade;
+                    Peixe.Visao.X = Peixe.Visao.X + Recepção.velocidade;
                 }
 
             }
@@ -121,6 +123,8 @@ namespace implementarlista_itens_obstáculos
                 if (Recepção.fundore.X > -2200)
                 {
                     Recepção.fundore.X = Recepção.fundore.X - Recepção.velocidade;
+                    Peixe.InimigoRe.X = Peixe.InimigoRe.X - Recepção.velocidade;
+                    Peixe.Visao.X = Peixe.Visao.X - Recepção.velocidade;
                 }
 
             }
@@ -128,65 +132,115 @@ namespace implementarlista_itens_obstáculos
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 Personagem.HainsR.Y = Personagem.HainsR.Y - Personagem.velocidade;
-                
 
-                if (Personagem.HainsR.Y <= Window.ClientBounds.Top + 100) 
+
+                if (Personagem.HainsR.Y <= Window.ClientBounds.Top + 100)
                 {
-                    
+
                     Recepção.fundore.Y = Recepção.fundore.Y + Recepção.velocidade;
-                
+                    Peixe.InimigoRe.Y = Peixe.InimigoRe.Y + Recepção.velocidade;
+                    Peixe.Visao.Y = Peixe.Visao.Y + Recepção.velocidade;
+
                 }
                 if (Personagem.HainsR.Y <= -5 && Recepção.contador == 0)
                 {
                     Recepção.contador = 1;
-                    Recepção.fundore.Y = -1698;
-                    Personagem.HainsR.Y = 160;
+                    for (int contador = -2400; contador <= -1698; contador = contador + 5)
+                    {
 
+                        Recepção.fundore.Y = contador;
+                        Personagem.HainsR.Y = 160;
+
+
+
+                    }
+
+
+
+                    /*Recepção.fundore.Y = -1698;
+                    Personagem.HainsR.Y = 160;
+                    */
 
                 }
                 if (Personagem.HainsR.Y <= -5 && Recepção.contador == 1)
                 {
-                    
+
                     Recepção.fundore.Y = -232;
                     Personagem.HainsR.Y = 160;
 
 
                 }
-            
+
 
 
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
+                Personagem.HainsR.Y = Personagem.HainsR.Y + Personagem.velocidade;
 
-                if (Recepção.fundore.Y > -2400)
+
+                if (Personagem.HainsR.Y <= Window.ClientBounds.Bottom - 100)
                 {
-                    Recepção.fundore.Y = Recepção.fundore.Y - 10;
+
+                    Recepção.fundore.Y = Recepção.fundore.Y - Recepção.velocidade;
+                    Peixe.InimigoRe.Y = Peixe.InimigoRe.Y - Recepção.velocidade;
+                    Peixe.Visao.Y = Peixe.Visao.Y - Recepção.velocidade;
+
                 }
+                if (Personagem.HainsR.Y >= 210 && Recepção.contador == 1)
+                {
+                    Recepção.contador = Recepção.contador - 1;
+                    Recepção.fundore.Y = -2400;
+                    Personagem.HainsR.Y = 190;
+
+
+                }
+                /*  if (Personagem.HainsR.Y >= 210 && Recepção.contador == 0)
+                  {
+
+                      Recepção.fundore.Y = -1698;
+                      Personagem.HainsR.Y = 160; ;
+
+                  }
+                  */
+
 
             }
 
 
-            if (Personagem.HainsR.Intersects(Visao))
-            {
 
+
+            /* for (int contador = -2400; contador <= -1698; contador = contador + 10) 
+             {
+
+                 Recepção.fundore.Y = contador;
+                 Personagem.HainsR.Y = 160;
+            
+            
+            
+             }
+             */
+
+
+            if (Personagem.HainsR.Intersects(Peixe.Visao))
+            {
                 Peixe.perseguir = true;
 
-                if (Peixe.perseguir == true)
+                if (Peixe.perseguir = true && Personagem.HainsR.X <= Peixe.InimigoRe.X)
                 {
-                    if (Personagem.HainsR.X < Peixe.InimigoRe.X)
-                    {
-                        Peixe.InimigoRe.X = Peixe.InimigoRe.X - 2;
-                        Visao.X = Peixe.InimigoRe.X;
-                    }
-                    else if (Personagem.HainsR.X > Peixe.InimigoRe.X)
-                    {
-                        Peixe.InimigoRe.X = Peixe.InimigoRe.X + 2;
-                        Visao.X = Peixe.InimigoRe.X;
-                    }
+                    Peixe.InimigoRe.X = Peixe.InimigoRe.X - Peixe.velocidadeinimigo;
+                    Peixe.Visao.X = Peixe.Visao.X - Peixe.velocidadeinimigo;
                 }
+                if (Peixe.perseguir = true && Personagem.HainsR.X >= Peixe.InimigoRe.X)
+                {
+                    Peixe.InimigoRe.X = Peixe.InimigoRe.X + Peixe.velocidadeinimigo;
+                    Peixe.Visao.X = Peixe.Visao.X + Peixe.velocidadeinimigo;
+                }
+
             }
+
+
 
 
             /*if (Personagem.HainsR.Intersects(Armario) && Keyboard.GetState().IsKeyDown(Keys.E)) 
@@ -197,7 +251,7 @@ namespace implementarlista_itens_obstáculos
             }*/
 
             Console.WriteLine(Personagem.HainsR.Y);
-
+            Console.WriteLine(Personagem.HainsR.X);
 
 
             base.Update(gameTime);
@@ -212,12 +266,12 @@ namespace implementarlista_itens_obstáculos
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             spriteBatch.Draw(Recepção.Texturafundo, Recepção.fundore, Color.White);
-            //spriteBatch.Draw(TexturaArmario, Armario, Color.White);
+            // spriteBatch.Draw(TexturaArmario, Armario, Color.White);
             //spriteBatch.Draw(TexturaEscada, Escada, Color.White);
             spriteBatch.Draw(Personagem.HainsTextura, Personagem.HainsR, Color.White);
             spriteBatch.Draw(Peixe.TexturaInimigo, Peixe.InimigoRe, Color.White);
+            spriteBatch.Draw(Peixe.TexturaVisao, Peixe.Visao, Color.White);
             spriteBatch.End();
-
 
             // TODO: Add your drawing code here
 
