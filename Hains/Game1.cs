@@ -17,7 +17,7 @@ namespace implementarlista_itens_obstáculos
         Hains Personagem = new Hains();
         Inimigos Peixe = new Inimigos();
         BackGround Recepção = new BackGround();
-        Rectangle Armario, Escada, Visao;
+        Rectangle Armario, Escada;
         Texture2D TexturaArmario, TexturaEscada;
 
 
@@ -113,6 +113,7 @@ namespace implementarlista_itens_obstáculos
                     Recepção.fundore.X = Recepção.fundore.X + Recepção.velocidade;
                     Peixe.InimigoRe.X = Peixe.InimigoRe.X + Recepção.velocidade;
                     Peixe.Visao.X = Peixe.Visao.X + Recepção.velocidade;
+                    
                 }
 
             }
@@ -125,6 +126,7 @@ namespace implementarlista_itens_obstáculos
                     Recepção.fundore.X = Recepção.fundore.X - Recepção.velocidade;
                     Peixe.InimigoRe.X = Peixe.InimigoRe.X - Recepção.velocidade;
                     Peixe.Visao.X = Peixe.Visao.X - Recepção.velocidade;
+                    
                 }
 
             }
@@ -145,48 +147,24 @@ namespace implementarlista_itens_obstáculos
 
 
 
-
-            /* for (int contador = -2400; contador <= -1698; contador = contador + 10) 
-             {
-
-                 Recepção.fundore.Y = contador;
-                 Personagem.HainsR.Y = 160;
             
+            if (Personagem.HainsR.Intersects(Peixe.Visao) && Personagem.HainsR.X <= Peixe.InimigoRe.X)
             
-            
-             }
-             */
-
-
-            if (Personagem.HainsR.Intersects(Peixe.Visao))
             {
-                Peixe.perseguir = true;
 
-                if (Peixe.perseguir = true && Personagem.HainsR.X <= Peixe.InimigoRe.X)
-                {
-                    Peixe.InimigoRe.X = Peixe.InimigoRe.X - Peixe.velocidadeinimigo;
-                    Peixe.Visao.X = Peixe.Visao.X - Peixe.velocidadeinimigo;
-                }
-                if (Peixe.perseguir = true && Personagem.HainsR.X >= Peixe.InimigoRe.X)
-                {
-                    Peixe.InimigoRe.X = Peixe.InimigoRe.X + Peixe.velocidadeinimigo;
-                    Peixe.Visao.X = Peixe.Visao.X + Peixe.velocidadeinimigo;
-                }
+                Peixe.VisaoInimigo();
+
+            }
+            if (Personagem.HainsR.Intersects(Peixe.Visao) && Personagem.HainsR.X >= Peixe.InimigoRe.X)
+            {
+                Peixe.VisaoInimigo();
 
             }
 
 
 
 
-            /*if (Personagem.HainsR.Intersects(Armario) && Keyboard.GetState().IsKeyDown(Keys.E)) 
-            {
 
-                perseguir = false;
-
-            }*/
-
-            //Console.WriteLine(Personagem.HainsR.Y);
-            //Console.WriteLine(Personagem.HainsR.X);
 
 
             base.Update(gameTime);
