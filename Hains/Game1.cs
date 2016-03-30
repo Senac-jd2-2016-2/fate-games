@@ -165,16 +165,22 @@ namespace implementarlista_itens_obstáculos
           
             if (Personagem.HainsR.Intersects(Peixe.Visao))
             {
-                Peixe.perseguir = true;
+                
                 Peixe.VisaoInimigo(Personagem.HainsR.X - Peixe.InimigoRe.X);
                
 
-            } else if (Keyboard.GetState().IsKeyDown(Keys.E)) 
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.E) && Personagem.HainsR.Intersects(Armario)) 
             {
 
                 Peixe.perseguir = false;
+
+            } 
+             
             
-            }
+           
+            
 
 
 
@@ -194,7 +200,7 @@ namespace implementarlista_itens_obstáculos
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             spriteBatch.Draw(Recepção.Texturafundo, Recepção.fundore, Color.White);
-           // spriteBatch.Draw(TexturaArmario, Armario, Color.White);
+           spriteBatch.Draw(TexturaArmario, Armario, Color.White);
             //spriteBatch.Draw(TexturaEscada, Escada, Color.White);
             spriteBatch.Draw(Personagem.HainsTextura, Personagem.HainsR, Color.White);
             spriteBatch.Draw(Peixe.TexturaInimigo, Peixe.InimigoRe, Color.White);
