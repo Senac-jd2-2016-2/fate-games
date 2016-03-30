@@ -14,9 +14,9 @@ namespace implementarlista_itens_obstáculos
         public int vida = 10, velocidade = 2;
         public Texture2D HainsTextura;
 
-
-
-
+      
+        
 
     }
+
 }

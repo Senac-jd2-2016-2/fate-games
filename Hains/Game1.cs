@@ -39,7 +39,7 @@ namespace implementarlista_itens_obstáculos
             // TODO: Add your initialization logic here
 
 
-            Armario = new Rectangle(160, 320, 335, 352);
+            Armario = new Rectangle(1200, 90, 335, 352);
             Escada = new Rectangle(120, 200, 250, 633);
 
 
@@ -110,9 +110,13 @@ namespace implementarlista_itens_obstáculos
 
                 if (Recepção.fundore.X < 0)
                 {
-                    Recepção.fundore.X = Recepção.fundore.X + Recepção.velocidade;
-                    Peixe.InimigoRe.X = Peixe.InimigoRe.X + Recepção.velocidade;
-                    Peixe.Visao.X = Peixe.Visao.X + Recepção.velocidade;
+                    Recepção.fundore.X += Recepção.velocidade;
+                    Peixe.InimigoRe.X += Recepção.velocidade;
+                    Peixe.Visao.X += Recepção.velocidade;
+
+
+                    Armario.X += Recepção.velocidade;
+
                     
                 }
 
@@ -123,42 +127,53 @@ namespace implementarlista_itens_obstáculos
 
                 if (Recepção.fundore.X > -2200)
                 {
-                    Recepção.fundore.X = Recepção.fundore.X - Recepção.velocidade;
-                    Peixe.InimigoRe.X = Peixe.InimigoRe.X - Recepção.velocidade;
-                    Peixe.Visao.X = Peixe.Visao.X - Recepção.velocidade;
+                    Recepção.fundore.X -= Recepção.velocidade;
+                    Peixe.InimigoRe.X -= Recepção.velocidade;
+                    Peixe.Visao.X -= Recepção.velocidade;
+
+
+                    Armario.X -= Recepção.velocidade;
                     
                 }
 
             }
-
+            if (Recepção.fundore.Y < -1000) { 
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 Recepção.mover(10);
                 Console.WriteLine("Y=" + Recepção.fundore.Y);
+                Peixe.InimigoRe.Y += Recepção.velocidade;
+                Peixe.Visao.Y += Recepção.velocidade;
+;
             }
-
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
+                                          }
+           
+            if (Recepção.fundore.Y > -2160)
             {
-                Recepção.mover(-10);
-                Console.WriteLine("Y=" + Recepção.fundore.Y);
+                if (Keyboard.GetState().IsKeyDown(Keys.S))
+                {
+                    Recepção.mover(-10);
+                    Console.WriteLine("Y=" + Recepção.fundore.Y);
+                    Peixe.InimigoRe.Y -= Recepção.velocidade;
+                    Peixe.Visao.Y -= Recepção.velocidade;
+                }
             }
-
             Recepção.moverAndar();
 
 
 
-            
-            if (Personagem.HainsR.Intersects(Peixe.Visao) && Personagem.HainsR.X <= Peixe.InimigoRe.X)
-            
+          
+            if (Personagem.HainsR.Intersects(Peixe.Visao))
+            {
+                Peixe.perseguir = true;
+                Peixe.VisaoInimigo(Personagem.HainsR.X - Peixe.InimigoRe.X);
+               
+
+            } else if (Keyboard.GetState().IsKeyDown(Keys.E)) 
             {
 
-                Peixe.VisaoInimigo();
-
-            }
-            if (Personagem.HainsR.Intersects(Peixe.Visao) && Personagem.HainsR.X >= Peixe.InimigoRe.X)
-            {
-                Peixe.VisaoInimigo();
-
+                Peixe.perseguir = false;
+            
             }
 
 
@@ -179,7 +194,7 @@ namespace implementarlista_itens_obstáculos
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             spriteBatch.Draw(Recepção.Texturafundo, Recepção.fundore, Color.White);
-            // spriteBatch.Draw(TexturaArmario, Armario, Color.White);
+           // spriteBatch.Draw(TexturaArmario, Armario, Color.White);
             //spriteBatch.Draw(TexturaEscada, Escada, Color.White);
             spriteBatch.Draw(Personagem.HainsTextura, Personagem.HainsR, Color.White);
             spriteBatch.Draw(Peixe.TexturaInimigo, Peixe.InimigoRe, Color.White);
