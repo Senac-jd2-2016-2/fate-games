@@ -46,12 +46,12 @@ namespace implementarlista_itens_obstáculos
 
 
             Armario = new Rectangle(1200, 90, 335, 352);
-            Escada = new Rectangle(900, -450, 220, 900);
+            Escada = new Rectangle(900, -400, 220, 900);
 
 
-            InimigosPeixe = new List<Inimigos>(1000);
+            InimigosPeixe = new List<Inimigos>();
 
-            for (int i = 0; i < InimigosPeixe.Count; i++)
+            for (int i = 0; i < 10; i++)
             {
 
                 peixedomar = new Inimigos();
@@ -61,7 +61,12 @@ namespace implementarlista_itens_obstáculos
             }
 
 
+            for (int i = 0; i < InimigosPeixe.Count; i++)
+            {
 
+                InimigosPeixe[i]
+
+            }
 
 
 
@@ -83,7 +88,7 @@ namespace implementarlista_itens_obstáculos
             TexturaEscada = Content.Load<Texture2D>("Escada");
             Recepção.Texturafundo = Content.Load<Texture2D>("BackGround");
             Personagem.HainsTextura = Content.Load<Texture2D>("Hains");
-            Peixe.TexturaInimigo = Content.Load<Texture2D>("Inimigo");
+            p = Content.Load<Texture2D>("Inimigo");
             Peixe.TexturaVisao = Content.Load<Texture2D>("Visao");
 
 
@@ -260,7 +265,7 @@ namespace implementarlista_itens_obstáculos
                 
                 
                 
-                if (Personagem.HainsR.Intersects(Escada))
+                //if (Personagem.HainsR.Intersects(Escada))
                 {
                     if (Recepção.fundore.Y < -1000)
                     {
@@ -274,7 +279,7 @@ namespace implementarlista_itens_obstáculos
                             Peixe.InimigoRe.Y += Recepção.velocidade;
                             Peixe.Visao.Y += Recepção.velocidade;
                             Armario.Y += Recepção.velocidade;
-                            Escada.Y += Recepção.velocidade;
+                           Escada.Y += Recepção.velocidade;
 
 
                         }
@@ -328,20 +333,21 @@ namespace implementarlista_itens_obstáculos
             spriteBatch.Draw(Peixe.TexturaVisao, Peixe.Visao, Color.White);
 
 
-
-            for (int i = 0; i < InimigosPeixe.Count; i++)
+            if (InimigosPeixe.Count > 0)
             {
-
-                if (InimigosPeixe[i].vida > 0)
+                for (int i = 0; i < 10; i++)
                 {
-                    foreach (Inimigos InimigosPeixeDraw in InimigosPeixe)
+
+                    if (InimigosPeixe[i].vida > 0)
                     {
-                        spriteBatch.Draw(peixedomar.TexturaInimigo, peixedomar.InimigoRe, Color.White);
+                        foreach (Inimigos InimigosPeixeDraw in InimigosPeixe)
+                        {
+                            spriteBatch.Draw(peixedomar.TexturaInimigo, peixedomar.InimigoRe, Color.White);
+                        }
                     }
+
                 }
-
             }
-
 
             spriteBatch.End();
 
