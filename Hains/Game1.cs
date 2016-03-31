@@ -133,7 +133,7 @@ namespace implementarlista_itens_obstáculos
             {
 
                 Peixe.perseguir = false;
-                Personagem.escondido = false;
+                Personagem.escondido = true;
 
             }
             
@@ -142,7 +142,7 @@ namespace implementarlista_itens_obstáculos
             {
 
                 Peixe.perseguir = true;
-                Personagem.escondido = true;
+                Personagem.escondido = false;
             }
              
             
@@ -260,7 +260,7 @@ namespace implementarlista_itens_obstáculos
                 
                 
                 
-                //if (Personagem.HainsR.Intersects(Escada))
+                if (Personagem.HainsR.Intersects(Escada))
                 {
                     if (Recepção.fundore.Y < -1000)
                     {
