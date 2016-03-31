@@ -20,12 +20,14 @@ namespace implementarlista_itens_obstáculos
         Random rand = new Random();
         SpriteBatch spriteBatch;
         Hains Personagem = new Hains();
-        Inimigos Peixe = new Inimigos();
+
         Inimigos peixedomar = new Inimigos();
+
+
         BackGround Recepção = new BackGround();
         Rectangle Armario,Escada;
         Texture2D TexturaArmario, TexturaEscada;
-        List<Inimigos> InimigosPeixe;
+        List<Inimigos> InimigosPeixe, visao;
 
 
         public Game1()
@@ -50,24 +52,23 @@ namespace implementarlista_itens_obstáculos
 
 
             InimigosPeixe = new List<Inimigos>();
+            visao = new List<Inimigos>();
 
             for (int i = 0; i < 10; i++)
             {
 
                 peixedomar = new Inimigos();
-                peixedomar.InimigoRe = new Rectangle(rand.Next(Window.ClientBounds.Height), 120, 190, 275);
+
+                peixedomar.InimigoRe = new Rectangle(rand.Next(190,2890), 120, 190, 275);
+                peixedomar.Visao = new Rectangle(peixedomar.InimigoRe.X, peixedomar.InimigoRe.Y, 500, 500);
                 InimigosPeixe.Add(peixedomar);
+              
+                
 
             }
 
-
-            for (int i = 0; i < InimigosPeixe.Count; i++)
-            {
-
-                InimigosPeixe[i]
-
-            }
-
+            
+            
 
 
             base.Initialize();
@@ -88,8 +89,17 @@ namespace implementarlista_itens_obstáculos
             TexturaEscada = Content.Load<Texture2D>("Escada");
             Recepção.Texturafundo = Content.Load<Texture2D>("BackGround");
             Personagem.HainsTextura = Content.Load<Texture2D>("Hains");
-            p = Content.Load<Texture2D>("Inimigo");
-            Peixe.TexturaVisao = Content.Load<Texture2D>("Visao");
+            
+            
+
+            for (int i = 0; i < InimigosPeixe.Count; i++)
+            {
+
+                InimigosPeixe[i].TexturaInimigo = Content.Load<Texture2D>("Inimigo");
+                InimigosPeixe[i].TexturaVisao = Content.Load<Texture2D>("Visao");
+
+            }
+
 
 
 
@@ -123,31 +133,38 @@ namespace implementarlista_itens_obstáculos
 
 
 
-
-
-
-            if (Personagem.HainsR.Intersects(Peixe.Visao))
+            for (int i = 0; i < InimigosPeixe.Count; i++)
             {
-
-                Peixe.VisaoInimigo(Personagem.HainsR.X - Peixe.InimigoRe.X);
-
-
+                
+             if (Personagem.HainsR.Intersects(InimigosPeixe[i].Visao))
+             {
+             InimigosPeixe[i].VisaoInimigo(Personagem.HainsR.X - InimigosPeixe[i].InimigoRe.X);
+             
+             }
+            
+            
             }
+
+
+         
 
             if (Keyboard.GetState().IsKeyDown(Keys.E) && Personagem.HainsR.Intersects(Armario))
             {
-
-                Peixe.perseguir = false;
-                Personagem.escondido = true;
-
+                for (int i = 0; i < InimigosPeixe.Count; i++)
+                {
+                    InimigosPeixe[i].perseguir = false;
+                    Personagem.escondido = true;
+                }
             }
-            
-            
-            if (Keyboard.GetState().IsKeyDown(Keys.R) && Personagem.HainsR.Intersects(Armario) && Peixe.perseguir == false)
-            {
 
-                Peixe.perseguir = true;
-                Personagem.escondido = false;
+            for (int i = 0; i < InimigosPeixe.Count; i++)
+            {
+            if (Keyboard.GetState().IsKeyDown(Keys.R) && Personagem.HainsR.Intersects(Armario) && InimigosPeixe[i].perseguir == false)
+            {
+                
+                    InimigosPeixe[i].perseguir = true;
+                    Personagem.escondido = false;
+                }
             }
              
             
@@ -185,8 +202,14 @@ namespace implementarlista_itens_obstáculos
                     if (Recepção.fundore.X < 0)
                     {
                         Recepção.fundore.X += Recepção.velocidade;
-                        Peixe.InimigoRe.X += Recepção.velocidade;
-                        Peixe.Visao.X += Recepção.velocidade;
+                        
+
+                        for (int i = 0; i < InimigosPeixe.Count; i++)
+                        {
+                            InimigosPeixe[i].InimigoRe.X += Recepção.velocidade;
+                            InimigosPeixe[i].Visao.X += Recepção.velocidade;
+
+                        }
 
 
 
@@ -225,8 +248,14 @@ namespace implementarlista_itens_obstáculos
                     if (Recepção.fundore.X > -2200)
                     {
                         Recepção.fundore.X -= Recepção.velocidade;
-                        Peixe.InimigoRe.X -= Recepção.velocidade;
-                        Peixe.Visao.X -= Recepção.velocidade;
+                      //  Peixe.InimigoRe.X -= Recepção.velocidade;
+                       // Peixe.Visao.X -= Recepção.velocidade;
+                        for (int i = 0; i < InimigosPeixe.Count; i++)
+                        {
+                            InimigosPeixe[i].InimigoRe.X -= Recepção.velocidade;
+                            InimigosPeixe[i].Visao.X -= Recepção.velocidade;
+
+                        }
 
 
 
@@ -276,8 +305,7 @@ namespace implementarlista_itens_obstáculos
 
                             Recepção.mover(10);
 
-                            Peixe.InimigoRe.Y += Recepção.velocidade;
-                            Peixe.Visao.Y += Recepção.velocidade;
+                          
                             Armario.Y += Recepção.velocidade;
                            Escada.Y += Recepção.velocidade;
 
@@ -292,8 +320,7 @@ namespace implementarlista_itens_obstáculos
                         if (Keyboard.GetState().IsKeyDown(Keys.S))
                         {
                             Recepção.mover(-10);
-                            Peixe.InimigoRe.Y -= Recepção.velocidade;
-                            Peixe.Visao.Y -= Recepção.velocidade;
+                           
                             Armario.Y -= Recepção.velocidade;
                             Escada.Y -= Recepção.velocidade;
                         }
@@ -329,22 +356,17 @@ namespace implementarlista_itens_obstáculos
             spriteBatch.Draw(TexturaArmario, Armario, Color.White);
             spriteBatch.Draw(TexturaEscada, Escada, Color.White);
             spriteBatch.Draw(Personagem.HainsTextura, Personagem.HainsR, Color.White);
-            spriteBatch.Draw(Peixe.TexturaInimigo, Peixe.InimigoRe, Color.White);
-            spriteBatch.Draw(Peixe.TexturaVisao, Peixe.Visao, Color.White);
+            
 
 
             if (InimigosPeixe.Count > 0)
             {
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < InimigosPeixe.Count; i++)
                 {
 
-                    if (InimigosPeixe[i].vida > 0)
-                    {
-                        foreach (Inimigos InimigosPeixeDraw in InimigosPeixe)
-                        {
-                            spriteBatch.Draw(peixedomar.TexturaInimigo, peixedomar.InimigoRe, Color.White);
-                        }
-                    }
+                    spriteBatch.Draw(InimigosPeixe[i].TexturaInimigo, InimigosPeixe[i].InimigoRe, Color.White);
+                    spriteBatch.Draw(InimigosPeixe[i].TexturaVisao, InimigosPeixe[i].Visao, Color.White);
+                         
 
                 }
             }
