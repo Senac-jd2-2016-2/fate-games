@@ -62,7 +62,7 @@ namespace implementarlista_itens_obstáculos
                 peixedomar = new Inimigos();
 
                 peixedomar.InimigoRe = new Rectangle(rand.Next(190,2890), 120, 190, 275);
-                peixedomar.Visao = new Rectangle(peixedomar.InimigoRe.X - 400, peixedomar.InimigoRe.Y, 800, 275);
+                peixedomar.Visao = new Rectangle(peixedomar.InimigoRe.X - 200, peixedomar.InimigoRe.Y, 600, 275);
                 InimigosPeixe.Add(peixedomar);
               
                 
@@ -131,6 +131,9 @@ namespace implementarlista_itens_obstáculos
 
 
 
+
+
+            ///////////////////////////////////--------------------------- Intersect Armario e Visao ------------------------------------------------------------------- /////////////////////////////////
 
 
 
@@ -306,7 +309,7 @@ namespace implementarlista_itens_obstáculos
 
                             Recepção.mover(10);
 
-                          
+
                             Armario.Y += Recepção.velocidade;
                            Escada.Y += Recepção.velocidade;
 
@@ -321,7 +324,10 @@ namespace implementarlista_itens_obstáculos
                         if (Keyboard.GetState().IsKeyDown(Keys.S))
                         {
                             Recepção.mover(-10);
-                           
+
+
+                       
+
                             Armario.Y -= Recepção.velocidade;
                             Escada.Y -= Recepção.velocidade;
                         }
@@ -331,12 +337,27 @@ namespace implementarlista_itens_obstáculos
                 }
 
             }
-            
-            
-           
-            
 
 
+
+            /*
+            for (int i = 0; i < InimigosPeixe.Count; i++)
+            {
+
+                if (InimigosPeixe[i].InimigoRe.Y >= 190) 
+                {
+                    InimigosPeixe[i].InimigoRe.Y = ;
+                
+                }
+                if (InimigosPeixe[i].InimigoRe.Y <= 120)
+                {
+                    InimigosPeixe[i].InimigoRe.Y = ;
+
+                }
+
+
+            }
+            */
 
 
 

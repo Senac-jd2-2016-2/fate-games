@@ -73,6 +73,7 @@ namespace implementarlista_itens_obstáculos
                 {
                     andarMovendo = false;
                     alturaAndar = 0;
+                   
                 }
                 
             }
