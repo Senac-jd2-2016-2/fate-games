@@ -19,15 +19,17 @@ namespace implementarlista_itens_obstáculos
         GraphicsDeviceManager graphics;
         Random rand = new Random();
         SpriteBatch spriteBatch;
+       
         Hains Personagem = new Hains();
 
         Inimigos peixedomar = new Inimigos();
-
+        List<Inimigos> InimigosPeixe, visao;
 
         BackGround Recepção = new BackGround();
+       
         Rectangle Armario,Escada;
-        Texture2D TexturaArmario, TexturaEscada;
-        List<Inimigos> InimigosPeixe, visao;
+        Texture2D TexturaArmario,TexturaEscada;
+        
 
 
         public Game1()
@@ -54,13 +56,13 @@ namespace implementarlista_itens_obstáculos
             InimigosPeixe = new List<Inimigos>();
             visao = new List<Inimigos>();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 2; i++)
             {
 
                 peixedomar = new Inimigos();
 
                 peixedomar.InimigoRe = new Rectangle(rand.Next(190,2890), 120, 190, 275);
-                peixedomar.Visao = new Rectangle(peixedomar.InimigoRe.X, peixedomar.InimigoRe.Y, 500, 500);
+                peixedomar.Visao = new Rectangle(peixedomar.InimigoRe.X - 400, peixedomar.InimigoRe.Y, 800, 275);
                 InimigosPeixe.Add(peixedomar);
               
                 
@@ -248,8 +250,7 @@ namespace implementarlista_itens_obstáculos
                     if (Recepção.fundore.X > -2200)
                     {
                         Recepção.fundore.X -= Recepção.velocidade;
-                      //  Peixe.InimigoRe.X -= Recepção.velocidade;
-                       // Peixe.Visao.X -= Recepção.velocidade;
+                      
                         for (int i = 0; i < InimigosPeixe.Count; i++)
                         {
                             InimigosPeixe[i].InimigoRe.X -= Recepção.velocidade;
