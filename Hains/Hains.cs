@@ -13,6 +13,7 @@ namespace implementarlista_itens_obstáculos
         public Rectangle HainsR = new Rectangle(320, 120, 190, 275);
         public int vida = 10, velocidade = 2;
         public Texture2D HainsTextura;
+        public bool andar = true;
 
       
         

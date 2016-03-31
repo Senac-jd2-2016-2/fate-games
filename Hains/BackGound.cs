@@ -25,6 +25,9 @@ namespace implementarlista_itens_obstáculos
             {
                 fundore.Y += qtd;
                 alturaAndar += qtd;
+               
+
+                
                 if (alturaAndar > 260)
                 {
                     andarMovendo = true;
