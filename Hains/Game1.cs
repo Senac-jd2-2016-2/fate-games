@@ -46,7 +46,7 @@ namespace implementarlista_itens_obstáculos
 
 
             Armario = new Rectangle(1200, 90, 335, 352);
-            Escada = new Rectangle(900, 0, 220, 850);
+            Escada = new Rectangle(900, -450, 220, 900);
 
 
             InimigosPeixe = new List<Inimigos>(1000);
@@ -133,7 +133,7 @@ namespace implementarlista_itens_obstáculos
             {
 
                 Peixe.perseguir = false;
-                Personagem.andar = false;
+                Personagem.escondido = false;
 
             }
             
@@ -142,7 +142,7 @@ namespace implementarlista_itens_obstáculos
             {
 
                 Peixe.perseguir = true;
-                Personagem.andar = true;
+                Personagem.escondido = true;
             }
              
             
@@ -166,10 +166,11 @@ namespace implementarlista_itens_obstáculos
 
 
 
-            if (Personagem.andar == true)
+            if (Personagem.escondido == false)
             {
 
-
+                if (Personagem.andar == true) 
+                { 
 
                 if (Keyboard.GetState().IsKeyDown(Keys.A))
                 {
@@ -255,23 +256,30 @@ namespace implementarlista_itens_obstáculos
 
 
                
+                }
                 
                 
                 
-                
-                if (Personagem.HainsR.Intersects(Escada))
+                //if (Personagem.HainsR.Intersects(Escada))
                 {
                     if (Recepção.fundore.Y < -1000)
                     {
                         if (Keyboard.GetState().IsKeyDown(Keys.W))
                         {
+
+                            
+
                             Recepção.mover(10);
 
-                            Peixe.InimigoRe.Y += 850;
-                            Peixe.Visao.Y += 850;
+                            Peixe.InimigoRe.Y += Recepção.velocidade;
+                            Peixe.Visao.Y += Recepção.velocidade;
+                            Armario.Y += Recepção.velocidade;
+                            Escada.Y += Recepção.velocidade;
 
 
                         }
+
+                        
                     }
 
                     if (Recepção.fundore.Y > -2160)
@@ -279,8 +287,10 @@ namespace implementarlista_itens_obstáculos
                         if (Keyboard.GetState().IsKeyDown(Keys.S))
                         {
                             Recepção.mover(-10);
-                            Peixe.InimigoRe.Y -= 850;
-                            Peixe.Visao.Y -= 850;
+                            Peixe.InimigoRe.Y -= Recepção.velocidade;
+                            Peixe.Visao.Y -= Recepção.velocidade;
+                            Armario.Y -= Recepção.velocidade;
+                            Escada.Y -= Recepção.velocidade;
                         }
                     }
                     Recepção.moverAndar();
