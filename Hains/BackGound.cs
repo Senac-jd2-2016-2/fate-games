@@ -28,13 +28,13 @@ namespace implementarlista_itens_obstáculos
                
 
                 
-                if (alturaAndar > 260)
+                if (alturaAndar > 600)
                 {
                     andarMovendo = true;
                     andar++;
                     subindo = true;
                 }
-                if (alturaAndar < 0)
+                if (alturaAndar < -720)
                 {
                     andarMovendo = true;
                     andar--;

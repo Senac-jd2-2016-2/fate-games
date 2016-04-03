@@ -246,6 +246,11 @@ namespace implementarlista_itens_obstáculos
                     }
 
                 }
+
+
+
+
+
                 if (Keyboard.GetState().IsKeyDown(Keys.D))
                 {
 
@@ -300,7 +305,7 @@ namespace implementarlista_itens_obstáculos
                 
                 //if (Personagem.HainsR.Intersects(Escada))
                 {
-                    if (Recepção.fundore.Y < -1000)
+                    if (Recepção.fundore.Y < -700)
                     {
                         if (Keyboard.GetState().IsKeyDown(Keys.W))
                         {
@@ -309,7 +314,13 @@ namespace implementarlista_itens_obstáculos
 
                             Recepção.mover(10);
 
+                            for (int i = 0; i < InimigosPeixe.Count; i++)
+                            {
 
+                                InimigosPeixe[i].InimigoRe.Y += 2090 % 850;
+                                InimigosPeixe[i].Visao.Y += 2090 % 850;
+
+                            }
                             Armario.Y += Recepção.velocidade;
                            Escada.Y += Recepção.velocidade;
 
@@ -326,7 +337,14 @@ namespace implementarlista_itens_obstáculos
                             Recepção.mover(-10);
 
 
-                       
+
+                            for (int i = 0; i < InimigosPeixe.Count; i++)
+                            {
+
+                                InimigosPeixe[i].InimigoRe.Y -= 2090 % 850;
+                                InimigosPeixe[i].Visao.Y -= 2090 % 850;
+
+                            }
 
                             Armario.Y -= Recepção.velocidade;
                             Escada.Y -= Recepção.velocidade;
