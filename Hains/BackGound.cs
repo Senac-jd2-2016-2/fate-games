@@ -11,7 +11,7 @@ namespace implementarlista_itens_obstáculos
     class BackGround
     {
 
-        public int velocidade = 10, subir = 0;
+        public int velocidade = 6, subir = 0;
         public Texture2D Texturafundo;
         public Rectangle fundore = new Rectangle(0, -2160, 3000, 2650);
         public int andar = 0;
@@ -34,7 +34,7 @@ namespace implementarlista_itens_obstáculos
                     andar++;
                     subindo = true;
                 }
-                if (alturaAndar < -720)
+                if (alturaAndar < -750)
                 {
                     andarMovendo = true;
                     andar--;

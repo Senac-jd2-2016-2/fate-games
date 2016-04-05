@@ -56,12 +56,12 @@ namespace implementarlista_itens_obstáculos
             InimigosPeixe = new List<Inimigos>();
             visao = new List<Inimigos>();
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 1; i++)
             {
 
                 peixedomar = new Inimigos();
 
-                peixedomar.InimigoRe = new Rectangle(rand.Next(190,2890), 120, 190, 275);
+                peixedomar.InimigoRe = new Rectangle(rand.Next(190,2890), 160, 190, 275);
                 peixedomar.Visao = new Rectangle(peixedomar.InimigoRe.X - 200, peixedomar.InimigoRe.Y, 600, 275);
                 InimigosPeixe.Add(peixedomar);
               
@@ -255,9 +255,10 @@ namespace implementarlista_itens_obstáculos
                 {
 
 
-                    if (Recepção.fundore.X > -2200)
+                    if (Recepção.fundore.X >= -2200)
                     {
                         Recepção.fundore.X -= Recepção.velocidade;
+
                       
                         for (int i = 0; i < InimigosPeixe.Count; i++)
                         {
@@ -270,7 +271,7 @@ namespace implementarlista_itens_obstáculos
 
                         Armario.X -= Recepção.velocidade;
                         Escada.X -= Recepção.velocidade;
-
+                     //   Console.WriteLine("X do BackGround: " + Recepção.fundore.X);
                     }
 
                     if (Recepção.fundore.X <= -2200)
@@ -305,7 +306,7 @@ namespace implementarlista_itens_obstáculos
                 
                 //if (Personagem.HainsR.Intersects(Escada))
                 {
-                    if (Recepção.fundore.Y < -700)
+                    if (Recepção.fundore.Y < -450)
                     {
                         if (Keyboard.GetState().IsKeyDown(Keys.W))
                         {
@@ -316,20 +317,35 @@ namespace implementarlista_itens_obstáculos
 
                             for (int i = 0; i < InimigosPeixe.Count; i++)
                             {
+                                
 
-                                InimigosPeixe[i].InimigoRe.Y += 2090 % 850;
-                                InimigosPeixe[i].Visao.Y += 2090 % 850;
+                                    InimigosPeixe[i].InimigoRe.Y += Recepção.velocidade + 4;
+                                    InimigosPeixe[i].Visao.Y += Recepção.velocidade + 4;
+                                
+
+                               Console.WriteLine("Y do Inimigo: " + InimigosPeixe[i].InimigoRe.Y);
+                                Console.WriteLine("Y da visao: " + InimigosPeixe[i].Visao.Y);
 
                             }
                             Armario.Y += Recepção.velocidade;
                            Escada.Y += Recepção.velocidade;
 
-
+                     /*      Console.WriteLine("Y do Hains: " + Personagem.HainsR.Y);
+                           Console.WriteLine("Y do BackGround: " + Recepção.fundore.Y);
+                           Console.WriteLine("Y do Armario: " + Armario.Y);*/
+                           
                         }
 
                         
                     }
 
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if (Recepção.fundore.Y > -2160)
                     {
                         if (Keyboard.GetState().IsKeyDown(Keys.S))
@@ -340,9 +356,12 @@ namespace implementarlista_itens_obstáculos
 
                             for (int i = 0; i < InimigosPeixe.Count; i++)
                             {
-
-                                InimigosPeixe[i].InimigoRe.Y -= 2090 % 850;
-                                InimigosPeixe[i].Visao.Y -= 2090 % 850;
+                                
+                                    InimigosPeixe[i].InimigoRe.Y -= Recepção.velocidade;
+                                    InimigosPeixe[i].Visao.Y -= Recepção.velocidade;
+                                    Console.WriteLine("Y do Inimigo: " + InimigosPeixe[i].InimigoRe.Y);
+                                    Console.WriteLine("Y da visao: " + InimigosPeixe[i].Visao.Y);
+                                
 
                             }
 
@@ -351,6 +370,8 @@ namespace implementarlista_itens_obstáculos
                         }
                     }
                     Recepção.moverAndar();
+                  /*  Console.WriteLine("Y do Hains: " + Personagem.HainsR.Y);
+                    Console.WriteLine("Y do BackGround: " + Recepção.fundore.Y);*/
 
                 }
 
@@ -358,24 +379,7 @@ namespace implementarlista_itens_obstáculos
 
 
 
-            /*
-            for (int i = 0; i < InimigosPeixe.Count; i++)
-            {
-
-                if (InimigosPeixe[i].InimigoRe.Y >= 190) 
-                {
-                    InimigosPeixe[i].InimigoRe.Y = ;
-                
-                }
-                if (InimigosPeixe[i].InimigoRe.Y <= 120)
-                {
-                    InimigosPeixe[i].InimigoRe.Y = ;
-
-                }
-
-
-            }
-            */
+         
 
 
 
