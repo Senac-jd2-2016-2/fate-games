@@ -20,6 +20,7 @@ namespace implementarlista_itens_obstáculos
         protected override void Initialize()
         {
             cenario = new Cenario();
+            cenario.Initialize();
             Player player = new Player();
             cenario.addGameObject(player);
 

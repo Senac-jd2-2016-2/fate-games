@@ -22,12 +22,12 @@ namespace implementarlista_itens_obstáculos
 
         public List<GameObject> objetos = new List<GameObject>();
 
-        public Cenario()
+        public void Initialize()
         {
             faseAtual = "sala-" + num + ".json";
-            cenarioModel = new CenarioModel();         
-            construtor = new Construtor(64, faseAtual);
+            cenarioModel = new CenarioModel();
             cenarioModel = CenarioModel.load(faseAtual);
+            construtor = new Construtor(64, faseAtual);           
 
         }
 
@@ -42,7 +42,6 @@ namespace implementarlista_itens_obstáculos
         public void Update(GameTime gameTime)
         {
             num = 0;
-            faseAtual = "sala-" + num + ".json";
 
             foreach (GameObject obj in objetos)
             {
