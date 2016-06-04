@@ -17,17 +17,17 @@ namespace implementarlista_itens_obstáculos
 
         public CenarioModel cenarioModel;
 
-        string faseAtual;
-        int num ;
+        public string faseAtual;
+        public int num ;
 
         public List<GameObject> objetos = new List<GameObject>();
 
         public Cenario()
         {
             faseAtual = "sala-" + num + ".json";
-            cenarioModel = new CenarioModel();
-            cenarioModel = CenarioModel.load(faseAtual);
+            cenarioModel = new CenarioModel();         
             construtor = new Construtor(64, faseAtual);
+            cenarioModel = CenarioModel.load(faseAtual);
 
         }
 

@@ -10,8 +10,6 @@ namespace implementarlista_itens_obstáculos
 {
     public class CenarioModel
     {
-
-        public Rectangle posicaoInicial;
         public Player player;
         public Cenario cenario;
         public List<Porta> portas;
