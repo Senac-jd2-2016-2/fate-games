@@ -5,11 +5,12 @@ using System.Text;
 
 namespace implementarlista_itens_obstáculos
 {
-    public enum StateEnemy
+    public class Porta : GameObject
     {
-        WATCHING,
-        ATTACKING,
-        CHASING,
-        COLECTING
+        public int linha;
+
+        public int coluna;
+
+        public int andar;
     }
 }

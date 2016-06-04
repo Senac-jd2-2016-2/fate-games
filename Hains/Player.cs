@@ -1,68 +1,44 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;  
+using System.Text;
 namespace implementarlista_itens_obstáculos
 {
-    public class Player : Personagem
+    public class Player : GameObject
     {
-        public StatePlayer state;
-
-
-        public void Initilize(Rectangle player, int velocity, int life)
+        public override void start(string faseAtual)
         {
-            state = StatePlayer.IDLE;
-            position = new Rectangle(player.X, player.Y, player.Width, player.Height);
-            this.velocity = velocity;
-            this.life = life;
+            cenarioModel = CenarioModel.load(faseAtual);
+            image = "Player.png";
+            position = new Vector2(cenarioModel.player.position.X, cenarioModel.player.position.Y);
+            rectangle = new Rectangle((int)position.X, (int)position.Y, cenarioModel.player.rectangle.Width, cenarioModel.player.rectangle.Height);
+
         }
-        public void LoadContent(ContentManager Content, string value)
-        {
-            img = Content.Load<Texture2D>(value);
-        }
-        //public void MovmentPlayer()
-        //{
 
-        //}
-        public void Update(GameTime gameTime)
+        public override void update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            Keys[] keys = Keyboard.GetState().GetPressedKeys();
+            foreach (Keys k in keys)
             {
-                state = StatePlayer.RUNLEFT;
+                if (k.Equals(Keys.Up))
+                {
+                    position.Y += 2;
+                }
+                if (k.Equals(Keys.Down))
+                {
+                    position.Y -= 2;
+                }
+                if (k.Equals(Keys.Right))
+                {
+                    position.X += 2;
+                }
+                if (k.Equals(Keys.Left))
+                {
+                    position.X -= 2;
+                }
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Right))
-            {
-                state = StatePlayer.RUNRIGTH;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                state = StatePlayer.RUNTOP;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Down))
-            {
-                state = StatePlayer.RUNDOWN;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Space))
-            {
-                state = StatePlayer.JUMP;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.E))
-            {
-                state = StatePlayer.SEARCHING;
-            }
-
-            else
-            {
-                state = StatePlayer.IDLE;
-            }
-        }
-        public void Draw(SpriteBatch spriteBacth)
-        {
-            spriteBacth.Draw(img, position, Color.White);
         }
     }
 }

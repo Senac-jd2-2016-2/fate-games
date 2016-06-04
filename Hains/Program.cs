@@ -17,8 +17,6 @@ namespace implementarlista_itens_obstáculos
             using (var game = new Game1())
                 game.Run();
         }
-
-        //teste
     }
 #endif
 }
