@@ -11,7 +11,7 @@ namespace implementarlista_itens_obstáculos
         public override void start(string faseAtual)
         {
             cenarioModel = CenarioModel.load(faseAtual);
-            image = "Player.png";
+            image = "Hains.png";
             position = new Vector2(cenarioModel.player.position.X, cenarioModel.player.position.Y);
             rectangle = new Rectangle((int)position.X, (int)position.Y, cenarioModel.player.rectangle.Width, cenarioModel.player.rectangle.Height);
 

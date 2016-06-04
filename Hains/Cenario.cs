@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -17,15 +18,16 @@ namespace implementarlista_itens_obstáculos
         public CenarioModel cenarioModel;
 
         string faseAtual;
-        int num = 0;
+        int num ;
 
         public List<GameObject> objetos = new List<GameObject>();
 
         public Cenario()
         {
-            cenarioModel = CenarioModel.load("sala-" + num + ".json");
+            faseAtual = "sala-" + num + ".json";
             cenarioModel = new CenarioModel();
-            construtor = new Construtor(64, cenarioModel.cenario.faseAtual);
+            cenarioModel = CenarioModel.load(faseAtual);
+            construtor = new Construtor(64, faseAtual);
 
         }
 
@@ -35,6 +37,25 @@ namespace implementarlista_itens_obstáculos
             objetos.Add(obj);
             obj.texture = content.Load<Texture2D>(obj.image);
             obj.start(cenarioModel.cenario.faseAtual);
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            num = 0;
+            faseAtual = "sala-" + num + ".json";
+
+            foreach (GameObject obj in objetos)
+            {
+                obj.update(gameTime);
+            }        
+        }
+
+        public void draw(SpriteBatch spriteBatch)
+        {            
+            foreach (GameObject obj in objetos)
+            {
+                spriteBatch.Draw(obj.texture,obj.rectangle, Color.White);
+            }
         }
     }
 }
