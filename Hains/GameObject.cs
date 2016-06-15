@@ -10,11 +10,8 @@ namespace implementarlista_itens_obstáculos
 {
     public class GameObject
     {
-        public Vector2 position;
 
         public Rectangle rectangle;
-
-        public Vector2 center = new Vector2(0, 0);
 
         public Texture2D texture;
 

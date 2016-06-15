@@ -10,10 +10,10 @@ namespace implementarlista_itens_obstáculos
     {
         public override void start(string faseAtual)
         {
+            
             cenarioModel = CenarioModel.load(faseAtual);
             image = "Hains.png";
-            position = new Vector2(cenarioModel.player.position.X, cenarioModel.player.position.Y);
-            rectangle = new Rectangle((int)position.X, (int)position.Y, cenarioModel.player.rectangle.Width, cenarioModel.player.rectangle.Height);
+            rectangle = new Rectangle(100, 100, 65, 65);
 
         }
 
@@ -24,19 +24,19 @@ namespace implementarlista_itens_obstáculos
             {
                 if (k.Equals(Keys.Up))
                 {
-                    position.Y += 2;
+                    rectangle.Y += 2;
                 }
                 if (k.Equals(Keys.Down))
                 {
-                    position.Y -= 2;
+                    rectangle.Y -= 2;
                 }
                 if (k.Equals(Keys.Right))
                 {
-                    position.X += 2;
+                    rectangle.X += 2;
                 }
                 if (k.Equals(Keys.Left))
                 {
-                    position.X -= 2;
+                    rectangle.X -= 2;
                 }
             }
         }
